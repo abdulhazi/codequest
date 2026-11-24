@@ -1085,6 +1085,7 @@ $("endBtn").onclick = () => { if (confirm("End the race now for everyone?")) hos
 $("csvBtn").onclick = downloadCSV;
 $("againBtn").onclick = () => { if (H.peer) H.peer.destroy(); location.hash = "#host"; location.reload(); };
 if (params.get("code")) $("jcode").value = params.get("code").replace(/\D/g, "").slice(0, 5);
+window.addEventListener("hashchange", () => { if (location.hash === "#host") hostGate(); });
 if (location.hash === "#host") hostGate();
 else { try { const j = JSON.parse(sessionStorage.getItem("cq_join") || "null"); if (j) { $("jcode").value = j.code; $("jname").value = j.name; AV = j.avatar; initAvatars(); joinRace(); } } catch (e) {} }
 
